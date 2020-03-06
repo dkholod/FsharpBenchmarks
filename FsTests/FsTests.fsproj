@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Compile Include="Extensions.fs" />
+        <Compile Include="CollectionTests.fs" />
+        <Compile Include="PatternMathc.fs" />
+        <Compile Include="InlineFunctions.fs" />
+        <Compile Include="Memoization.fs" />
+        <Compile Include="InterestingToKnow.fs" />
+        <Compile Include="StructuralEquality.fs" />
+        <Compile Include="TailOptimization.fs" />
+        <Compile Include="PartialApplication.fs" />
+        <Compile Include="PipesAndFuncs.fs" />
+    </ItemGroup>
+
+</Project>
