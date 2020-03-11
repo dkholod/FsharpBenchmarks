@@ -1,4 +1,5 @@
 ﻿using BenchmarkDotNet.Running;
+using FsTests;
 
 namespace Benchmarks
 {
@@ -6,8 +7,8 @@ namespace Benchmarks
     {
         static void Main(string[] _)
         {
-            //BenchmarkRunner.Run<StructuralEqualityTests>();
-            FsTests.TailOptimization.test();
+            BenchmarkRunner.Run<InterestingTests>();
+            //FsTests.TailOptimization.test();
         }
     }
 }

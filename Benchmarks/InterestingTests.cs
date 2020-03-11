@@ -7,28 +7,57 @@ namespace Benchmarks
     [RPlotExporter, SimpleJob(RuntimeMoniker.NetCoreApp31), RankColumn, MemoryDiagnoser, GcServer(true), GcConcurrent(true)]
     public class InterestingTests
     {
+        // [Benchmark]
+        // public void Soccer()
+        // {
+        //     InterestingToKnow.branchToString(InterestingToKnow.Branch.Soccer);
+        // }
+        //
+        // [Benchmark]
+        // public void Greyhounds()
+        // {
+        //     InterestingToKnow.branchToString(InterestingToKnow.Branch.Greyhounds);
+        // }
+        //
+        // [Benchmark]
+        // public void Sprintf()
+        // {
+        //     InterestingToKnow.concat("Number of leagues", 5);
+        // }
+        //
+        // [Benchmark]
+        // public void Format()
+        // {
+        //     InterestingToKnow.format("Number of leagues", 5);
+        // }
+        
         [Benchmark]
-        public void Soccer()
+        public void NullCheck()
         {
-            InterestingToKnow.branchToString(InterestingToKnow.Branch.Soccer);
+            InterestingToKnow.nullCheck<TestClass>(null);
         }
         
         [Benchmark]
-        public void Greyhounds()
+        public void DefaultCheck()
         {
-            InterestingToKnow.branchToString(InterestingToKnow.Branch.Greyhounds);
+            InterestingToKnow.isDefaulf<TestClass>(null);
         }
         
         [Benchmark]
-        public void Sprintf()
+        public void MatchCheck()
         {
-            InterestingToKnow.concat("Number of leagues", 5);
+            InterestingToKnow.nullCheckMatch<TestClass>(null);
         }
         
         [Benchmark]
-        public void Format()
+        public void RefCheck()
         {
-            InterestingToKnow.format("Number of leagues", 5);
+            InterestingToKnow.nullCheckRefEqls<TestClass>(null);
         }
+    }
+
+    public class TestClass
+    {
+        public int Bag { get; set; }
     }
 }

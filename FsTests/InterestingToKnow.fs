@@ -2,7 +2,7 @@ module FsTests.InterestingToKnow
 
 open System
 
-// 30 cases, Socer is first, Greyhounds - last
+// 30 cases, Soccer is first, Greyhounds - last
 type Branch =
     | Soccer
     | Basketball
@@ -86,3 +86,11 @@ type Result<'T,'TError> =
     | Ok of ResultValue:'T
     | Error of ErrorValue:'TError
 
+
+// BAD
+let nullCheck x = (x = null)
+let isDefaulf x = x = Unchecked.defaultof<_>
+
+// GOOD
+let nullCheckMatch x = match x with null -> true | _ -> false
+let nullCheckRefEqls (x : 't when 't : null) = System.Object.ReferenceEquals(x, null)
