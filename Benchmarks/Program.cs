@@ -7,7 +7,7 @@ namespace Benchmarks
     {
         static void Main(string[] _)
         {
-            BenchmarkRunner.Run<InterestingTests>();
+            BenchmarkRunner.Run<CollectionTests>();
             //FsTests.TailOptimization.test();
         }
     }

@@ -29,17 +29,19 @@ type Selection = {
 let setTitle title (l: Line) =
     { l with Title = title }
 
-let setUnder(l: Line) =
-    { l with UnderPoints = 1; }
+let setUnder v (l: Line) =
+    { l with UnderPoints = v }
 
-let setOver(l: Line) =
-    { l with OverPoints = 2 }    
+let setOver v (l: Line) =
+    { l with OverPoints = v }    
+
+let setOverSwapped l v = l |> setOver v
 
 let setOverUnder() =
     { Title = ""; OverPoints = 0; UnderPoints = 0 }
     |> setTitle "Over/Under"
-    |> setOver
-    |> setUnder
+    |> setOver 2
+    |> setUnder 3
     
 let inline fold f a (xs: _ []) =
     let mutable a = a

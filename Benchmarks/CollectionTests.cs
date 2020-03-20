@@ -1,46 +1,154 @@
-using System.Collections.Generic;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Jobs;
 
 namespace Benchmarks
 {
-    [SimpleJob(RuntimeMoniker.NetCoreApp31), RankColumn, MemoryDiagnoser, GcServer(true), GcConcurrent(true)]
+    enum ElementsCount
+    {
+        Ten,
+        Thousand,
+        Million
+    }
+    
+    [RPlotExporter, SimpleJob(RuntimeMoniker.NetCoreApp31), RankColumn, MemoryDiagnoser, GcServer(true), GcConcurrent(true)]
     public class CollectionTests
     {
-        List<int> _testList;
+        ElementsCount elementsCount = ElementsCount.Million;
 
-        public CollectionTests(List<int> testList)
+        [Benchmark]
+        public void Array()
         {
-            _testList = testList;
+            switch (elementsCount)
+            {
+                case ElementsCount.Ten:
+                    FsTests.Collections.arrayTest10();
+                    break;
+                case ElementsCount.Thousand:
+                    FsTests.Collections.arrayTest1K();
+                    break;
+                case ElementsCount.Million:
+                    FsTests.Collections.arrayTest1M();
+                    break;
+            }
         }
-
-        [GlobalSetup]
-        public void Setup()
+        
+        [Benchmark]
+        public void NsArr()
         {
+            switch (elementsCount)
+            {
+                case ElementsCount.Ten:
+                    FsTests.Collections.nessosOnArrayTest10();
+                    break;
+                case ElementsCount.Thousand:
+                    FsTests.Collections.nessosOnArrayTest1K();
+                    break;
+                case ElementsCount.Million:
+                    FsTests.Collections.nessosOnArrayTest1M();
+                    break;
+            }
+        }
+        
+        [Benchmark]
+        public void LinqArr()
+        {
+            switch (elementsCount)
+            {
+                case ElementsCount.Ten:
+                    FsTests.Collections.linqOnArrayTest10();
+                    break;
+                case ElementsCount.Thousand:
+                    FsTests.Collections.linqOnArrayTest1K();
+                    break;
+                case ElementsCount.Million:
+                    FsTests.Collections.linqOnArrayTest1M();
+                    break;
+            }
         }
 
         [Benchmark]
-        public void ArrayFilterItems()
+        public void FsList()
         {
-            FsTests.Collections.arrayFilterItems();
+            switch (elementsCount)
+            {
+                case ElementsCount.Ten:
+                    FsTests.Collections.listTest10();
+                    break;
+                case ElementsCount.Thousand:
+                    FsTests.Collections.listTest1K();
+                    break;
+                case ElementsCount.Million:
+                    FsTests.Collections.listTest1M();
+                    break;
+            }
         }
 
         [Benchmark]
-        public void SetFilterItems()
+        public void FsSeq()
         {
-            FsTests.Collections.setFilterItems();
+            switch (elementsCount)
+            {
+                case ElementsCount.Ten:
+                    FsTests.Collections.seqTest10();
+                    break;
+                case ElementsCount.Thousand:
+                    FsTests.Collections.seqTest1K();
+                    break;
+                case ElementsCount.Million:
+                    FsTests.Collections.seqTest1M();
+                    break;
+            }
+        }
+        
+        [Benchmark]
+        public void NsSeq()
+        {
+            switch (elementsCount)
+            {
+                case ElementsCount.Ten:
+                    FsTests.Collections.nessosOnSeqTest10();
+                    break;
+                case ElementsCount.Thousand:
+                    FsTests.Collections.nessosOnSeqTest1K();
+                    break;
+                case ElementsCount.Million:
+                    FsTests.Collections.nessosOnSeqTest1M();
+                    break;
+            }
         }
 
         [Benchmark]
-        public void ListFilterItems()
+        public void LinqSeq()
         {
-            FsTests.Collections.listFilter500kItems();
+            switch (elementsCount)
+            {
+                case ElementsCount.Ten:
+                    FsTests.Collections.linqOnSeqTest10();
+                    break;
+                case ElementsCount.Thousand:
+                    FsTests.Collections.linqOnSeqTest1K();
+                    break;
+                case ElementsCount.Million:
+                    FsTests.Collections.linqOnSeqTest1M();
+                    break;
+            }
         }
-
+        
         [Benchmark]
-        public void SetToArrayFilter500kItems()
+        public void ArrOfSeq()
         {
-            FsTests.Collections.setToArrayFilter500kItems();
+            switch (elementsCount)
+            {
+                case ElementsCount.Ten:
+                    FsTests.Collections.seqToArrayTest10();
+                    break;
+                case ElementsCount.Thousand:
+                    FsTests.Collections.seqToArrayTest1K();
+                    break;
+                case ElementsCount.Million:
+                    FsTests.Collections.seqToArrayTest1M();
+                    break;
+            }
         }
     }
 }
